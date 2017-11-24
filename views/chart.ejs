@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>chart</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+</head>
+  <body>  
+      <%= usercount %>
+      <%= usertime %>
+    <div id=chart>
+    <canvas id="myChart" width="400px" height="400px"></canvas>
+    </div>
+
+    <script>
+    let usercount = <%= JSON.stringify(usercount) %>;
+
+    let ctx = document.getElementById("myChart");
+    Chart.defaults.global.defaultFontFamily = "Lato";
+    Chart.defaults.global.defaultFontSize = 18;
+
+    var data = {
+    labels: ["mon","tue","wed","thur","fri"],
+    datasets: [{
+        label: "USE ",
+        data: [1,2,3,4],
+        borderColor: "#3e95cd",
+        fill: false
+    },{
+        label: "USE TOTAL",
+        data: [10, 32, 45, 55, 60],
+        borderColor: "#c45850",
+        fill: false
+    }]  
+    };
+    
+    var options = {
+        title: {
+            display: true,
+            position: 'top',
+            fontSize: 20,
+            text: "I USE TUMBLER"
+        },
+        legend: {
+            display: true
+        },
+        animation: {
+            duration: 1000
+        }
+    };
+    
+    var lineChart = new Chart(ctx, {
+        type: 'line',
+        data: data,
+        options: options
+    });
+
+    </script>
+    
+  </body>
+</html>
